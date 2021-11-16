@@ -57,6 +57,58 @@ public class DAOMienTrung {
         }
         return ls;
     }
+    
+    public void AddCar(MienTrung mt){
+        String sql = "Insert into CarMTrung(TENHANG,BIENSO,BAIXE,DITU,DENBEN,NGAYVAO) VALUES" 
+                + "(?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, mt.getTenHang());
+            ps.setString(2, mt.getBienSo());
+            ps.setString(3, mt.getBaiXe());
+            ps.setString(4, mt.getDiTu());
+            ps.setString(5, mt.getDenBen());
+            ps.setString(6, mt.getNgayVao());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void DeleteCar(int id){
+        String sql = "Delete From CarMTrung where ID=?";
+        try {
+            PreparedStatement ps = conn.prepareCall(sql);
+            ps.setInt(1,id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public ArrayList<MienTrung> findbyName(String Name){
+        ArrayList<MienTrung> ls =new ArrayList<>();
+        String sql = "Select * from CarMTrung where TENHANG like ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,"%" + Name +"%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                MienTrung n = new MienTrung();
+                n.setId(rs.getInt("ID"));
+                n.setTenHang(rs.getString("TENHANG"));
+                n.setBienSo(rs.getString("BIENSO"));
+                n.setBaiXe(rs.getString("BAIXE"));
+                n.setDiTu(rs.getString("DITU"));
+                n.setDenBen(rs.getString("DENBEN"));
+                n.setNgayVao(rs.getString("NGAYVAO"));
+                ls.add(n);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ls;
+    }
     public static void main(String[] args) {
         new DAOMienTrung();
     }
