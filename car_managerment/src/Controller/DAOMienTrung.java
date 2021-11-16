@@ -109,6 +109,28 @@ public class DAOMienTrung {
         }
         return ls;
     }
+    
+    
+     public ArrayList<MienTrung> findbyBaiXe(String BaiXe){
+        ArrayList<MienTrung> ls =new ArrayList<>();
+        String sql = "Select * from CarMTrung where BAIXE like ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,"%" + BaiXe +"%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                MienTrung n = new MienTrung();
+                n.setId(rs.getInt("ID"));
+                n.setTenHang(rs.getString("TENHANG"));
+                n.setBaiXe(rs.getString("BAIXE"));
+                n.setNgayVao(rs.getString("NGAYVAO"));
+                ls.add(n);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ls;
+    }
     public static void main(String[] args) {
         new DAOMienTrung();
     }
