@@ -1,0 +1,53 @@
+﻿CREATE DATABASE CAR
+GO
+USE CAR
+GO
+
+create table Account 
+(
+	USERNAME varchar(50),
+	GMAIL NCHAR(50),
+	PASS CHAR(20) UNIQUE NOT NULL,
+	CONFIRM CHAR(20) NOT NULL,
+	CONSTRAINT PK_US PRIMARY KEY (USERNAME)
+)
+go
+
+create table CarMTrung 
+(
+	ID INT  IDENTITY(1,1),
+	TENHANG NVARCHAR(50),
+	BIENSO NCHAR(20),
+	BAIXE NVARCHAR(10) NOT NULL,  
+	DITU NVARCHAR(50),
+	DENBEN NVARCHAR(50),
+	NGAYVAO NVARCHAR(50),
+	CONSTRAINT PK_ID PRIMARY KEY (ID)
+)
+go
+create table CarMTrungCalendar 
+(
+	IDDC INT  IDENTITY(1,1),
+	TENHANGDC NVARCHAR(50),
+	BIENSODC NCHAR(20),
+	TRANGTHAI NVARCHAR(20) NOT NULL,  
+	DITUDC NVARCHAR(50),
+	DENBENDC NVARCHAR(50),
+	NGAYVAODC NVARCHAR(50),
+	CONSTRAINT PK_IDDC PRIMARY KEY (IDDC)
+)
+go
+
+
+-- drop table CarMTrungCalendar
+Select * from CarMTrungCalendar
+insert into CarMTrungCalendar (TENHANGDC,BIENSODC,TRANGTHAI,DITUDC,DENBENDC,NGAYVAODC) VALUES 
+('vantai','7801-9999999','Đang Chạy','Hà Nội','Tp HCM','1999/01/21'),
+('vantai','7801-9999999','Còn Tại Bến','Hà Nội','Tp HCM','1999/01/21'),
+('vantai','7801-9999999','Đã Hoàn Thành','Hà Nội','Tp HCM','1999/01/21'),
+('vantai','7801-9999999','Đang Chạy','Hà Nội','Tp HCM','1999/01/21'),
+('vantai','7801-9999999','Còn Tại Bến','Hà Nội','Tp HCM','1999/01/21')
+
+
+
+
