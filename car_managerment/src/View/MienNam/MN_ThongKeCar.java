@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View.MienTrung;
+package View.MienNam;
 
-import Controller.DAOMienTrung;
-import Model.MienTrung;
+import View.MienNam.*;
+import Controller.DAOMienNam;
+import Model.MienNam;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,15 +34,15 @@ import org.apache.logging.log4j.Logger;
  *
  * @author Hvt02
  */
-public class MT_ThongKeCar extends javax.swing.JFrame {
+public class MN_ThongKeCar extends javax.swing.JFrame {
 
     /**
-     * Creates new form MT_ThongKeCar
+     * Creates new form MN_ThongKeCar
      */
-    private List<MienTrung> mientrung;
+    private List<MienNam> miennam;
     private DefaultTableModel Model ;
     
-    public MT_ThongKeCar() {
+    public MN_ThongKeCar() {
         initComponents();
         this.setLocationRelativeTo(null);
         Model = (DefaultTableModel)tbThongKe.getModel();
@@ -210,9 +211,9 @@ public class MT_ThongKeCar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       String BaiXe = cbxTenBai.getSelectedItem().toString();
       if(BaiXe.length() > 0){
-           mientrung = new DAOMienTrung().findbyBaiXe(BaiXe);
+           miennam = new DAOMienNam().findbyBaiXe(BaiXe);
             Model.setRowCount(0);
-           for(MienTrung mt:mientrung){
+           for(MienNam mt:miennam){
             Model.addRow(new Object[]{
             tbThongKe.getRowCount()+1,mt.getTenHang(),mt.getBaiXe(),mt.getNgayVao()
             });
@@ -222,7 +223,7 @@ public class MT_ThongKeCar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-         MT_ManagerCar l = new MT_ManagerCar();
+         MN_ManagerCar l = new MN_ManagerCar();
         l.setLocationRelativeTo(null);
         l.setVisible(true);
         this.dispose();
@@ -286,20 +287,23 @@ public class MT_ThongKeCar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MT_ThongKeCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MN_ThongKeCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MT_ThongKeCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MN_ThongKeCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MT_ThongKeCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MN_ThongKeCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MT_ThongKeCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MN_ThongKeCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MT_ThongKeCar().setVisible(true);
+                new MN_ThongKeCar().setVisible(true);
             }
         });
     }
@@ -319,9 +323,9 @@ public class MT_ThongKeCar extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void showTable() {
-        mientrung = (List<MienTrung>) new DAOMienTrung().getListMT();
+        miennam = (List<MienNam>) new DAOMienNam().getListMT();
         Model.setRowCount(0);
-        for(MienTrung mt:mientrung){
+        for(MienNam mt:miennam){
             Model.addRow(new Object[]{
             tbThongKe.getRowCount()+1,mt.getTenHang(),mt.getBaiXe(),mt.getNgayVao()
             });

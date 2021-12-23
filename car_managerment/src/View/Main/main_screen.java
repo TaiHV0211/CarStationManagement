@@ -5,8 +5,8 @@
  */
 package View.Main;
 
-import View.MienNam.main_mnam;
-import View.MienBac.main_mbac;
+import View.MienNam.MN_ManagerCar;
+import View.MienBac.MB_ManagerCar;
 import View.MienTrung.MT_ManagerCar;
 
 /**
@@ -119,7 +119,7 @@ public class main_screen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMBacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMBacActionPerformed
-        main_mbac l = new main_mbac();
+        MB_ManagerCar l = new MB_ManagerCar();
         l.setLocationRelativeTo(null);
         l.setVisible(true);
         this.dispose();
@@ -133,7 +133,7 @@ public class main_screen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMTrungActionPerformed
 
     private void btnMNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMNamActionPerformed
-        main_mnam l = new main_mnam();
+        MN_ManagerCar l = new MN_ManagerCar();
         l.setLocationRelativeTo(null);
         l.setVisible(true);
         this.dispose();
