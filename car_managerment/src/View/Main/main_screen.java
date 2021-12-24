@@ -5,8 +5,8 @@
  */
 package View.Main;
 
-import View.MienNam.main_mnam;
-import View.MienBac.main_mbac;
+import View.MienNam.MN_ManagerCar;
+import View.MienBac.MB_ManagerCar;
 import View.MienTrung.MT_ManagerCar;
 
 /**
@@ -31,95 +31,76 @@ public class main_screen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         btnMBac = new javax.swing.JButton();
         btnMTrung = new javax.swing.JButton();
         btnMNam = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 302, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 332, Short.MAX_VALUE)
+            .addGap(0, 310, Short.MAX_VALUE)
         );
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMBac.setBackground(new java.awt.Color(51, 204, 255));
         btnMBac.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        btnMBac.setText("Miền Bắc");
+        btnMBac.setText("Trạm xe Miền Bắc");
         btnMBac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMBacActionPerformed(evt);
             }
         });
+        getContentPane().add(btnMBac, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 180, 66));
 
+        btnMTrung.setBackground(new java.awt.Color(102, 204, 255));
         btnMTrung.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        btnMTrung.setText("Miền Trung");
+        btnMTrung.setText("Trạm xe Miền Trung");
         btnMTrung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMTrungActionPerformed(evt);
             }
         });
+        getContentPane().add(btnMTrung, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 200, 68));
 
+        btnMNam.setBackground(new java.awt.Color(51, 204, 255));
         btnMNam.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        btnMNam.setText("Miền Nam");
+        btnMNam.setText("Trạm xe Miền Nam");
         btnMNam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMNamActionPerformed(evt);
             }
         });
+        getContentPane().add(btnMNam, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 210, 68));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnMNam, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(btnMTrung, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(btnMBac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(87, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(btnMBac, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnMTrung, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnMNam, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Exit.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 60, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anh-nen-1-min.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMBacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMBacActionPerformed
-        main_mbac l = new main_mbac();
+        MB_ManagerCar l = new MB_ManagerCar();
         l.setLocationRelativeTo(null);
         l.setVisible(true);
         this.dispose();
@@ -133,11 +114,18 @@ public class main_screen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMTrungActionPerformed
 
     private void btnMNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMNamActionPerformed
-        main_mnam l = new main_mnam();
+        MN_ManagerCar l = new MN_ManagerCar();
         l.setLocationRelativeTo(null);
         l.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMNamActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        login_account l = new login_account();
+        l.setLocationRelativeTo(null);
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -179,6 +167,8 @@ public class main_screen extends javax.swing.JFrame {
     private javax.swing.JButton btnMBac;
     private javax.swing.JButton btnMNam;
     private javax.swing.JButton btnMTrung;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

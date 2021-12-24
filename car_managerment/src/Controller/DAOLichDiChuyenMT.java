@@ -40,7 +40,7 @@ public class DAOLichDiChuyenMT {
             while (rs.next()) {
                 LichDiChuyenMT n = new LichDiChuyenMT();
                 n.setIddc(rs.getInt("IDDC"));
-                n.setTenHangdc(rs.getString("TENHANGDC"));
+                n.setTenHangdc(rs.getString("Id_hangxe"));
                 n.setBienSodc(rs.getString("BIENSODC"));
                 n.setTrangThai(rs.getString("TRANGTHAI"));
                 n.setDiTudc(rs.getString("DITUDC"));
@@ -55,7 +55,7 @@ public class DAOLichDiChuyenMT {
     }
     
     public void AddCarCalendar(LichDiChuyenMT mt){
-        String sql = "Insert into CarMTrungCalendar(TENHANGDC,BIENSODC,TRANGTHAI,DITUDC,DENBENDC,NGAYVAODC) VALUES" 
+        String sql = "Insert into CarMTrungCalendar(Id_hangxe,BIENSODC,TRANGTHAI,DITUDC,DENBENDC,NGAYVAODC) VALUES" 
                 + "(?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -93,7 +93,7 @@ public class DAOLichDiChuyenMT {
             while(rs.next()){
                 LichDiChuyenMT n = new LichDiChuyenMT();
                 n.setIddc(rs.getInt("IDDC"));
-                n.setTenHangdc(rs.getString("TENHANGDC"));
+                n.setTenHangdc(rs.getString("Id_hangxe"));
                 n.setBienSodc(rs.getString("BIENSODC"));
                 n.setTrangThai(rs.getString("TRANGTHAI"));
                 n.setDiTudc(rs.getString("DITUDC"));

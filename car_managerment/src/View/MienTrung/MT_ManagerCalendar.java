@@ -14,10 +14,15 @@ import javax.swing.table.DefaultTableModel;
 
 /***/
 import java.awt.Desktop;
+import java.beans.Statement;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -39,14 +44,31 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
     /**
      * Creates new form MT_ManagerCalendar
      */
-   private List<LichDiChuyenMT> calendarmt;
+    private List<LichDiChuyenMT> calendarmt;
     private DefaultTableModel Model;
+    private Connection conn;
     int SelecteđIndex;
+    
+    String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=CAR;user=sa;password=Hvt@02112001";
+
+    Statement st;
+    ResultSet rs;
     public MT_ManagerCalendar() {
         initComponents();
         this.setLocationRelativeTo(null);
         Model = (DefaultTableModel)tbCalendarMT.getModel();
         showTable();
+        
+        
+         try {
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        loadDataDB();
     }
 
     /**
@@ -59,7 +81,6 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -68,7 +89,6 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
         txtNgayDC = new javax.swing.JTextField();
         txtBenDenDc = new javax.swing.JTextField();
         cbTrangThaiDC = new javax.swing.JComboBox<>();
-        txtTenHangDC = new javax.swing.JTextField();
         txtBienSoDC = new javax.swing.JTextField();
         txtBenKHDC = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -79,7 +99,9 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
         btnQuayLai = new javax.swing.JButton();
         btnFindDc = new javax.swing.JButton();
         btnRefestDC = new javax.swing.JButton();
-        button1 = new java.awt.Button();
+        jButton1 = new javax.swing.JButton();
+        txtTenHangDC = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,10 +109,6 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("LỊCH DI CHUYỂN CỦA XE");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 11, 219, -1));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Tên Hãng");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, 20));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Biển số");
@@ -116,7 +134,6 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
 
         cbTrangThaiDC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang Chạy", "Còn Tại Bến", "Đã Hoàn Thành" }));
         getContentPane().add(cbTrangThaiDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(644, 54, 137, 34));
-        getContentPane().add(txtTenHangDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 180, 40));
         getContentPane().add(txtBienSoDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 180, 40));
         getContentPane().add(txtBenKHDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 180, 40));
 
@@ -137,30 +154,34 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, 260));
 
+        btnThemDC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Create.png"))); // NOI18N
         btnThemDC.setText("Thêm");
         btnThemDC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemDCActionPerformed(evt);
             }
         });
-        getContentPane().add(btnThemDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 80, -1));
+        getContentPane().add(btnThemDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 100, -1));
 
+        btnUpdateDC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Edit.png"))); // NOI18N
         btnUpdateDC.setText("Sửa");
         btnUpdateDC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateDCActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUpdateDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 80, -1));
+        getContentPane().add(btnUpdateDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 90, -1));
 
+        btnDeleteDC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Delete.png"))); // NOI18N
         btnDeleteDC.setText("Xóa");
         btnDeleteDC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteDCActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDeleteDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 170, 80, -1));
+        getContentPane().add(btnDeleteDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 90, -1));
 
+        btnQuayLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Exit.png"))); // NOI18N
         btnQuayLai.setText("Quay lại");
         btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,14 +190,16 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
         });
         getContentPane().add(btnQuayLai, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, -1, -1));
 
+        btnFindDc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Search.png"))); // NOI18N
         btnFindDc.setText("Tim Kiếm");
         btnFindDc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindDcActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFindDc, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, -1, -1));
+        getContentPane().add(btnFindDc, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, -1, -1));
 
+        btnRefestDC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Refresh.png"))); // NOI18N
         btnRefestDC.setText("Refest");
         btnRefestDC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,18 +208,39 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
         });
         getContentPane().add(btnRefestDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, -1, -1));
 
-        button1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        button1.setLabel("Excel");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/List.png"))); // NOI18N
+        jButton1.setText("Excel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
+
+        getContentPane().add(txtTenHangDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 180, 40));
+
+        jButton2.setText("Tên Hãng");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 90, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    public void loadDataDB() {
+        String sql = "select * from TenHangXeMT";
+        try {
+              PreparedStatement ps = conn.prepareStatement(sql);
+            Statement st;
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                this.txtTenHangDC.addItem(rs.getString("Id_hangxe"));
+            }
+        } catch (Exception e) {
+        }
+    }
     public void openFile(String file){
         try{
             File path = new File(file);
@@ -207,13 +251,13 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
     }
     private void btnThemDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemDCActionPerformed
         LichDiChuyenMT mt =new LichDiChuyenMT();
-        mt.setTenHangdc(txtTenHangDC.getText());
+        mt.setTenHangdc(txtTenHangDC.getSelectedItem().toString());
         mt.setBienSodc(txtBienSoDC.getText());
         mt.setTrangThai(cbTrangThaiDC.getSelectedItem().toString());
         mt.setDiTudc(txtBenKHDC.getText());
         mt.setDenBendc(txtBenDenDc.getText());
         mt.setNgayVaodc(txtNgayDC.getText());
-        if(txtTenHangDC.getText().equals("") || txtBienSoDC.getText().equals("") || txtBenKHDC.getText().equals("")|| txtBenDenDc.getText().equals("")|| txtNgayDC.getText().equals("")){
+        if(txtBienSoDC.getText().equals("") || txtBenKHDC.getText().equals("")|| txtBenDenDc.getText().equals("")|| txtNgayDC.getText().equals("")){
         JOptionPane.showMessageDialog(this, "Thông tin không được để trống");
         }else {
             new DAOLichDiChuyenMT().AddCarCalendar(mt);
@@ -241,13 +285,13 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Hãy chọn dữ liệu để sửa");
         }else{
             LichDiChuyenMT mt =new LichDiChuyenMT();
-            mt.setTenHangdc(txtTenHangDC.getText());
+            mt.setTenHangdc(txtTenHangDC.getSelectedItem().toString());
             mt.setBienSodc(txtBienSoDC.getText());
             mt.setTrangThai(cbTrangThaiDC.getSelectedItem().toString());
             mt.setDiTudc(txtBenKHDC.getText());
             mt.setDenBendc(txtBenDenDc.getText());
             mt.setNgayVaodc(txtNgayDC.getText());
-            if(txtTenHangDC.getText().equals("") || txtBienSoDC.getText().equals("") || txtBenKHDC.getText().equals("")|| txtBenDenDc.getText().equals("")|| txtNgayDC.getText().equals("")){
+            if(txtBienSoDC.getText().equals("") || txtBenKHDC.getText().equals("")|| txtBenDenDc.getText().equals("")|| txtNgayDC.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Thông tin không được để trống");
             }else {
                 new DAOLichDiChuyenMT().AddCarCalendar(mt);
@@ -260,7 +304,7 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
     private void tbCalendarMTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCalendarMTMouseClicked
         SelecteđIndex = tbCalendarMT.getSelectedRow();
         LichDiChuyenMT mt = calendarmt.get(SelecteđIndex);
-        txtTenHangDC.setText(mt.getTenHangdc());
+        txtTenHangDC.setSelectedItem(mt.getTrangThai());
         txtBienSoDC.setText(mt.getBienSodc());
         cbTrangThaiDC.setSelectedItem(mt.getTrangThai());
         txtBenKHDC.setText(mt.getDiTudc());
@@ -269,7 +313,7 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
     }//GEN-LAST:event_tbCalendarMTMouseClicked
 
     private void btnFindDcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindDcActionPerformed
-       String Name = txtTenHangDC.getText();        
+       String Name = txtTenHangDC.getSelectedItem().toString();    
             if(Name.length() > 0){
                 calendarmt = new DAOLichDiChuyenMT().findbyName(Name);
                  Model.setRowCount(0);
@@ -282,7 +326,7 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFindDcActionPerformed
 
     private void btnRefestDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefestDCActionPerformed
-        txtTenHangDC.setText("");
+
         txtBienSoDC.setText("");
         txtBenKHDC.setText("");
         txtBenDenDc.setText("");
@@ -297,7 +341,7 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          try{
            JFileChooser jFileChooser = new JFileChooser();
            jFileChooser.showSaveDialog(this);
@@ -336,7 +380,14 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
        }catch(IOException io){
            System.out.println(io);
        }
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        MT_HangXe l = new MT_HangXe();
+        l.setLocationRelativeTo(null);
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,10 +431,10 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
     private javax.swing.JButton btnRefestDC;
     private javax.swing.JButton btnThemDC;
     private javax.swing.JButton btnUpdateDC;
-    private java.awt.Button button1;
     private javax.swing.JComboBox<String> cbTrangThaiDC;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -395,7 +446,7 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
     private javax.swing.JTextField txtBenKHDC;
     private javax.swing.JTextField txtBienSoDC;
     private javax.swing.JTextField txtNgayDC;
-    private javax.swing.JTextField txtTenHangDC;
+    private javax.swing.JComboBox<String> txtTenHangDC;
     // End of variables declaration//GEN-END:variables
 
     private void showTable() {
@@ -407,4 +458,6 @@ public class MT_ManagerCalendar extends javax.swing.JFrame {
             });
         }
     }
+
+    
 }
