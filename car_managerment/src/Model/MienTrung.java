@@ -12,12 +12,14 @@ package Model;
 public class MienTrung {
     private int id;
     private String TenHang, BienSo,BaiXe,DiTu,DenBen,NgayVao;
+    private String HangXe;
 
     public MienTrung() {
     }
 
-    public MienTrung(String TenHang, String BienSo, String BaiXe, String DiTu, String DenBen, String NgayVao) {
+    public MienTrung(String TenHang, String BienSo, String BaiXe, String DiTu, String DenBen, String NgayVao , String HangXe) {
         this.TenHang = TenHang;
+        this.HangXe = HangXe;
         this.BienSo = BienSo;
         this.BaiXe = BaiXe;
         this.DiTu = DiTu;
@@ -25,9 +27,10 @@ public class MienTrung {
         this.NgayVao = NgayVao;
     }
 
-    public MienTrung(int id, String TenHang, String BienSo, String BaiXe, String DiTu, String DenBen, String NgayVao) {
+    public MienTrung(int id, String TenHang,String HangXe, String BienSo, String BaiXe, String DiTu, String DenBen, String NgayVao) {
         this.id = id;
         this.TenHang = TenHang;
+        this.HangXe = HangXe;
         this.BienSo = BienSo;
         this.BaiXe = BaiXe;
         this.DiTu = DiTu;
@@ -49,6 +52,13 @@ public class MienTrung {
 
     public void setTenHang(String TenHang) {
         this.TenHang = TenHang;
+    }
+    public String getHangXe() {
+        return HangXe;
+    }
+
+    public void setHangXe(String HangXe) {
+        this.HangXe = HangXe;
     }
 
     public String getBienSo() {

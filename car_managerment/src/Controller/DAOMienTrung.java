@@ -36,7 +36,7 @@ public class DAOMienTrung {
     }
     public  ArrayList<MienTrung> getListMT(){
         ArrayList<MienTrung> ls = new ArrayList<>();
-        String sql = "Select * from CarMTrung";
+        String sql = "select * from TenHangXeMT ,CarMTrung where TenHangXeMT.Id_hangxe = CarMTrung.Id_hangxe";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             Statement st;
@@ -44,7 +44,8 @@ public class DAOMienTrung {
             while (rs.next()) {
                 MienTrung n = new MienTrung();
                 n.setId(rs.getInt("ID"));
-                n.setTenHang(rs.getString("TENHANG"));
+                n.setTenHang(rs.getString("Id_hangxe"));
+                n.setHangXe(rs.getString("TenHangXe"));
                 n.setBienSo(rs.getString("BIENSO"));
                 n.setBaiXe(rs.getString("BAIXE"));
                 n.setDiTu(rs.getString("DITU"));
@@ -59,7 +60,7 @@ public class DAOMienTrung {
     }
     
     public void AddCar(MienTrung mt){
-        String sql = "Insert into CarMTrung(TENHANG,BIENSO,BAIXE,DITU,DENBEN,NGAYVAO) VALUES" 
+        String sql = "Insert into CarMTrung(Id_hangxe,BIENSO,BAIXE,DITU,DENBEN,NGAYVAO) VALUES" 
                 + "(?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -88,7 +89,7 @@ public class DAOMienTrung {
     
     public ArrayList<MienTrung> findbyName(String Name){
         ArrayList<MienTrung> ls =new ArrayList<>();
-        String sql = "Select * from CarMTrung where TENHANG like ?";
+        String sql = "Select * from CarMTrung where Id_hangxe like ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1,"%" + Name +"%");
@@ -96,7 +97,7 @@ public class DAOMienTrung {
             while(rs.next()){
                 MienTrung n = new MienTrung();
                 n.setId(rs.getInt("ID"));
-                n.setTenHang(rs.getString("TENHANG"));
+                n.setTenHang(rs.getString("Id_hangxe"));
                 n.setBienSo(rs.getString("BIENSO"));
                 n.setBaiXe(rs.getString("BAIXE"));
                 n.setDiTu(rs.getString("DITU"));
@@ -121,7 +122,7 @@ public class DAOMienTrung {
             while(rs.next()){
                 MienTrung n = new MienTrung();
                 n.setId(rs.getInt("ID"));
-                n.setTenHang(rs.getString("TENHANG"));
+                n.setTenHang(rs.getString("Id_hangxe"));
                 n.setBaiXe(rs.getString("BAIXE"));
                 n.setNgayVao(rs.getString("NGAYVAO"));
                 ls.add(n);

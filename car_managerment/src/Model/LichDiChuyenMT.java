@@ -11,13 +11,14 @@ package Model;
  */
 public class LichDiChuyenMT {
     private int iddc;
-    private String TenHangdc, BienSodc,TrangThai,DiTudc,DenBendc,NgayVaodc;
+    private String TenHangdc, BienSodc,TrangThai,DiTudc,DenBendc,NgayVaodc,HangXe;
 
     public LichDiChuyenMT() {
     }
 
-    public LichDiChuyenMT(String TenHangdc, String BienSodc, String TrangThai, String DiTudc, String DenBendc, String NgayVaodc) {
+    public LichDiChuyenMT(String TenHangdc,String HangXe, String BienSodc, String TrangThai, String DiTudc, String DenBendc, String NgayVaodc) {
         this.TenHangdc = TenHangdc;
+        this.HangXe = HangXe;
         this.BienSodc = BienSodc;
         this.TrangThai = TrangThai;
         this.DiTudc = DiTudc;
@@ -41,6 +42,16 @@ public class LichDiChuyenMT {
         this.TenHangdc = TenHangdc;
     }
 
+    
+    
+    
+    public String getHangXr() {
+        return HangXe;
+    }
+
+    public void setHangXe(String HangXe) {
+        this.HangXe = HangXe;
+    }
     public String getBienSodc() {
         return BienSodc;
     }
