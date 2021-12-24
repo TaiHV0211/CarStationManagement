@@ -53,16 +53,12 @@ public class MN_ManagerCar extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
-        btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         txtDiTu = new javax.swing.JTextField();
         txtNgayVao = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         txtDenBen = new javax.swing.JComboBox<>();
         btnRefest = new javax.swing.JButton();
-        btnFind = new javax.swing.JButton();
-        btnldc = new javax.swing.JButton();
-        btnThongKe = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbMienNam = new javax.swing.JTable();
@@ -101,14 +97,6 @@ public class MN_ManagerCar extends javax.swing.JFrame {
             }
         });
 
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Edit.png"))); // NOI18N
-        btnSua.setText("Sửa");
-        btnSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaActionPerformed(evt);
-            }
-        });
-
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -135,30 +123,6 @@ public class MN_ManagerCar extends javax.swing.JFrame {
             }
         });
 
-        btnFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Search.png"))); // NOI18N
-        btnFind.setText("Tìm kiếm");
-        btnFind.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindActionPerformed(evt);
-            }
-        });
-
-        btnldc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Calendar.png"))); // NOI18N
-        btnldc.setText("Lịch di chuyển");
-        btnldc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnldcActionPerformed(evt);
-            }
-        });
-
-        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Hinh/Notes.png"))); // NOI18N
-        btnThongKe.setText("Thống kê");
-        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThongKeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -175,13 +139,11 @@ public class MN_ManagerCar extends javax.swing.JFrame {
                     .addComponent(txtDiTu)
                     .addComponent(txtNgayVao, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRefest)
-                        .addGap(3, 3, 3)
-                        .addComponent(btnFind, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnRefest))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
@@ -195,16 +157,11 @@ public class MN_ManagerCar extends javax.swing.JFrame {
                             .addComponent(txtDenBen, 0, 1, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnThem)
-                        .addGap(15, 15, 15)
-                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(114, 114, 114)
+                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbxBaiXe, 0, 134, Short.MAX_VALUE)
-                    .addComponent(btnldc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(cbxBaiXe, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,15 +187,11 @@ public class MN_ManagerCar extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(txtNgayVao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThem)
-                            .addComponent(btnSua)
-                            .addComponent(btnXoa)
-                            .addComponent(btnThongKe))))
+                            .addComponent(btnXoa))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(btnRefest)
-                    .addComponent(btnFind)
-                    .addComponent(btnldc))
+                    .addComponent(btnRefest))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -350,59 +303,6 @@ public class MN_ManagerCar extends javax.swing.JFrame {
         txtNgayVao.setText(mt.getNgayVao());
     }//GEN-LAST:event_tbMienNamMouseClicked
 
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        SelecteđIndex = tbMienNam.getSelectedRow();
-        MienNam m = miennam.get(SelecteđIndex);
-        new DAOMienNam().DeleteCar(m.getId());
-        if(miennam.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Không có dữ liệu để sửa");
-        }else if(SelecteđIndex == -1){
-            JOptionPane.showMessageDialog(this, "Hãy chọn dữ liệu để sửa");
-        }else{
-            MienNam mt =new MienNam();
-            mt.setTenHang(txtTenHang.getText());
-            mt.setBienSo(txtBienSo.getText());
-            mt.setBaiXe(cbxBaiXe.getSelectedItem().toString());
-            mt.setDiTu(txtDiTu.getText());
-            mt.setDenBen(txtDenBen.getSelectedItem().toString());
-            mt.setNgayVao(txtNgayVao.getText());
-            if(txtTenHang.getText().equals("") || txtBienSo.getText().equals("") || txtDiTu.getText().equals("")|| txtNgayVao.getText().equals("")){
-                JOptionPane.showMessageDialog(this, "Thông tin không được để trống");
-            }else {
-                new DAOMienNam().AddCar(mt);
-                showTable();
-                JOptionPane.showMessageDialog(this, "Sửa Thành Công");
-            }
-        }
-    }//GEN-LAST:event_btnSuaActionPerformed
-
-    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
-        String Name = txtTenHang.getText();        
-            if(Name.length() > 0){
-                miennam = new DAOMienNam().findbyName(Name);
-                 Model.setRowCount(0);
-                for(MienNam mt:miennam){
-                    Model.addRow(new Object[]{
-                    tbMienNam.getRowCount()+1,mt.getTenHang(),mt.getBienSo(),mt.getBaiXe(),mt.getDiTu(),mt.getDenBen(),mt.getNgayVao()
-                });
-            }
-        }
-    }//GEN-LAST:event_btnFindActionPerformed
-
-    private void btnldcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnldcActionPerformed
-        MN_ManagerCalendar l = new MN_ManagerCalendar();
-        l.setLocationRelativeTo(null);
-        l.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnldcActionPerformed
-
-    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        MN_ThongKeCar l = new MN_ThongKeCar();
-        l.setLocationRelativeTo(null);
-        l.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnThongKeActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -446,13 +346,9 @@ public class MN_ManagerCar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFind;
     private javax.swing.JButton btnRefest;
-    private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton btnldc;
     private javax.swing.JComboBox<String> cbxBaiXe;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

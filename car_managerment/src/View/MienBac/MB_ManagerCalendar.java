@@ -112,6 +112,12 @@ public class MB_ManagerCalendar extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Ngày dự kiến");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 172, 79, 26));
+
+        txtNgayDC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNgayDCActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtNgayDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 180, 40));
         getContentPane().add(txtBenDenDc, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 180, 40));
 
@@ -344,6 +350,10 @@ public class MB_ManagerCalendar extends javax.swing.JFrame {
            System.out.println(io);
        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtNgayDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgayDCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNgayDCActionPerformed
 
     /**
      * @param args the command line arguments
